@@ -33,14 +33,29 @@ const Container = styled.div`
   margin: 0 auto;
   display: flex;
   .profile {
+    position: sticky;
+    top: 0;
+    height: 100vh;
     width: 250px;
     padding: 40px 0;
     &-image {
+      position: relative;
+      *::selection {
+        background: none;
+      }
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         border-radius: 50%;
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
       }
     }
     &-detail {
