@@ -1,5 +1,5 @@
 {
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "react-hooks"],
   "extends": [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended"
@@ -9,6 +9,8 @@
     "@typescript-eslint/no-explicit-any": "error",
     "no-console": "error",
     "quotes": ["error", "single"],
-    "semi": "error"
+    "semi": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }
