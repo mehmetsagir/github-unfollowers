@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import GlobalStyle from '../styles/GlobalStyles';
 import { Auth0Provider } from '@auth0/auth0-react';
-import Layout from '@components/Layout';
+import Layout from 'components/Layout';
 
 
 function MyApp({ Component, pageProps }: AppProps) {

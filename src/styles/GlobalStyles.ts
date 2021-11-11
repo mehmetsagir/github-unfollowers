@@ -2,10 +2,11 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 	:root {
-		--bg-color: #0E1117;
-		--primary-color: #151922;
-		--primary-hover-color: #191e26;
-		--text-color: #f1f1f1;
+		--color-bg: #0E1117;
+		--color-primary: #151922;
+		--color-primary-hover: #191e26;
+		--color-text: #f1f1f1;
+		--color-text-secondary: #8b949e;
 	}
   * {
 		margin: 0;
@@ -24,8 +25,8 @@ const GlobalStyle = createGlobalStyle`
 		height: 100%;
 	} 
 	body {
-		background: var(--bg-color);
-		color: var(--text-color);
+		background: var(--color-bg);
+		color: var(--color-text);
 		height: 100%;
 	}
 	a {
@@ -37,6 +38,22 @@ const GlobalStyle = createGlobalStyle`
 	button {
 		background: none;
 		border: none;
+	}
+	.btn {
+		background: var(--color-primary);
+    color: var(--color-text);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 200ms;
+
+    &:hover {
+      background: var(--color-primary-hover);
+    }
 	}
 `;
 
