@@ -3,7 +3,7 @@ import Head from 'next/head';
 import GlobalStyle from '../styles/GlobalStyles';
 import { Auth0Provider } from '@auth0/auth0-react';
 import Layout from 'components/Layout';
-
+import { UserContextProvider } from 'src/hooks/useUser';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -19,9 +19,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         clientId={String(process.env.NEXT_PUBLIC_CLIENT_ID)}
         redirectUri={process.env.NEXT_PUBLIC_URL}
       >
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <UserContextProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </UserContextProvider>
       </Auth0Provider>
     </>
   );
