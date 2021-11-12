@@ -28,8 +28,6 @@ export const UserContextProvider = ({ children }) => {
       });
   }, [authLoading, userData]);
 
-  console.log(user);
-
   return (
     <UserContext.Provider
       value={{
