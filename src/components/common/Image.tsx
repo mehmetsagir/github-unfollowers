@@ -17,14 +17,12 @@ const Image: React.FC<Props> = ({ src, alt, size }) => {
 
 const Container = styled.div<{ size: string }>`
   position: relative;
-  width: ${({ size }) => size};
-  height: ${({ size }) => size};
   *::selection {
     background: none;
   }
   img {
-    width: 100%;
-    height: 100%;
+    width: ${({ size }) => size};
+    height: ${({ size }) => size};
     object-fit: cover;
     border-radius: 50%;
   }
