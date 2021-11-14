@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
 		--color-primary-hover: #191e26;
 		--color-text: #f1f1f1;
 		--color-text-secondary: #8b949e;
+		--size: 1050px;
 	}
   * {
 		margin: 0;
@@ -46,9 +47,10 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 25px;
+    padding: 25px 0;
     border-radius: 5px;
     cursor: pointer;
+		white-space: nowrap;
     transition: 200ms;
 
     &:hover {
