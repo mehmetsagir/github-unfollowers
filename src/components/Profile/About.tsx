@@ -69,6 +69,9 @@ const About: React.FC<Props> = ({
 );
 
 const Container = styled.ul`
+  @media (max-width: 1050px) {
+    display: none;
+  }
   li {
     display: flex;
     align-items: center;

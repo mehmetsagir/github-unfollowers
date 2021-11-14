@@ -20,28 +20,32 @@ const Detail: React.FC<Props> = ({
 }) => {
   return (
     <Container>
-      <h4>{name}</h4>
-      <h6>{username}</h6>
-      {bio && <p className="bio">{bio}</p>}
-      <a
-        href={url}
-        className="btn view-profile"
-        target="_blank"
-        rel="noreferrer"
-      >
-        View Profile
-      </a>
-      <ul className="followers-info">
-        <li>
-          <FollowerIcon />
-          {followers || 0}
-          <span>followers</span>
-        </li>
-        <li>
-          {following || 0}
-          <span>following</span>
-        </li>
-      </ul>
+      <div>
+        <h4>{name}</h4>
+        <h6>{username}</h6>
+      </div>
+      <div className="wrapper">
+        {bio && <p className="bio">{bio}</p>}
+        <a
+          href={url}
+          className="btn view-profile"
+          target="_blank"
+          rel="noreferrer"
+        >
+          View Profile
+        </a>
+        <ul className="followers-info">
+          <li>
+            <FollowerIcon />
+            {followers || 0}
+            <span>followers</span>
+          </li>
+          <li>
+            {following || 0}
+            <span>following</span>
+          </li>
+        </ul>
+      </div>
     </Container>
   );
 };
@@ -96,6 +100,27 @@ const Container = styled.div`
         }
       }
     }
+  }
+
+  @media (max-width: 1050px) {
+    margin-top: 0;
+    margin-left: 20px;
+
+    div {
+      flex: 1;
+    }
+    .bio {
+      margin: 4px 0;
+    }
+    .followers-info {
+      margin: 0;
+    }
+    .view-profile {
+      display: none;
+    }
+  }
+  @media (max-width: 720px) {
+    margin: 10px 0;
   }
 `;
 
