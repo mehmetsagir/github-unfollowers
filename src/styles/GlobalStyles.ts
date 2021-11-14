@@ -57,6 +57,28 @@ const GlobalStyle = createGlobalStyle`
       background: var(--color-primary-hover);
     }
 	}
+	.layout-loader {
+		width: var(--size);
+		margin: 0 auto;
+		display: flex;
+		padding: 0 25px;
+
+		.content {
+			margin-left: 40px;
+			padding: 30px 8px;
+			flex: 1;
+		}
+
+		@media (max-width: 1050px) {
+			width: 100%;
+			flex-direction: column;
+			padding: 0;
+			.content {
+				margin-left: 0;
+				padding: 30px 0;
+			}
+		}
+	}
 `;
 
 export default GlobalStyle;
