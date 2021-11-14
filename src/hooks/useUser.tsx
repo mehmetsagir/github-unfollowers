@@ -1,6 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import Axios from 'src/config/axios';
 import { createContext, useContext, useEffect, useState } from 'react';
+import axios from 'axios';
 
 type ContextType = {
   user: any;
@@ -18,6 +19,10 @@ export const UserContextProvider = ({ children }) => {
   useEffect(() => {
     if (authLoading) return;
     if (!userData) return setLoading(false);
+
+    axios.post('/api/user', {
+      username: userData.nickname,
+    });
 
     Axios.get(userData.nickname)
       .then((res) => {
