@@ -1,5 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import axios from 'axios';
+import Axios from 'src/config/axios';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 type ContextType = {
@@ -18,15 +18,13 @@ export const UserContextProvider = ({ children }) => {
   useEffect(() => {
     if (authLoading) return;
     if (!userData) return setLoading(false);
-    axios
-      .get(`https://api.github.com/users/${userData.nickname}`)
+
+    Axios.get(userData.nickname)
       .then((res) => {
         setUser({ ...res.data, ...userData });
       })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [authLoading, userData]);
+      .finally(() => setLoading(false));
+  }, [authLoading]);
 
   return (
     <UserContext.Provider
