@@ -1,54 +1,107 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/dist/client/router';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import useOnClickOutside from 'src/hooks/useOnOutSideClick';
 
 const Tabs = () => {
+  const [isActive, setIsActive] = useState(false);
   const router = useRouter();
 
-  const activeLink = (link) => {
-    if (router.pathname === link) {
-      return 'active';
-    }
-    return '';
-  };
+  const activeLink = useCallback(
+    (link) => {
+      if (router.pathname === link) return 'active';
+      return '';
+    },
+    [router.pathname]
+  );
+
+  useEffect(() => {
+    setIsActive(false);
+  }, [router.pathname]);
+
+  const ref = useRef<HTMLElement>();
+  useOnClickOutside(ref, () => setIsActive(false));
 
   return (
-    <Container>
-      <li>
-        <Link href="/">
-          <a className={activeLink('/')}>Followers</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/unfollowers">
-          <a className={activeLink('/unfollowers')}>Unfollowers</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/follows-back">
-          <a className={activeLink('/follows-back')}>Follows Back</a>
-        </Link>
-      </li>
+    <Container ref={ref}>
+      <button className="btn toggle-btn" onClick={() => setIsActive(!isActive)}>
+        Menu
+      </button>
+      <ul className={isActive ? 'active' : ''}>
+        <li className={activeLink('/')}>
+          <Link href="/">
+            <a>Followers</a>
+          </Link>
+        </li>
+        <li className={activeLink('/unfollowers')}>
+          <Link href="/unfollowers">
+            <a>Unfollowers</a>
+          </Link>
+        </li>
+        <li className={activeLink('/not-following')}>
+          <Link href="/not-following">
+            <a>You don&#39;t follow</a>
+          </Link>
+        </li>
+      </ul>
     </Container>
   );
 };
 
-const Container = styled.ul`
-  display: flex;
+const Container = styled.div<any>`
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--color-bg);
 
-  li {
-    flex: 1;
-    padding: 0 25px;
-    a {
-      display: block;
-      text-align: center;
-      padding: 10px 0;
-      opacity: 0.3;
-      transition: 200ms;
+  * {
+    user-select: none;
+  }
 
+  .toggle-btn {
+    display: none;
+  }
+  ul {
+    display: flex;
+    li {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 0 25px;
+      a {
+        width: 100%;
+        display: block;
+        text-align: center;
+        padding: 20px 0;
+        opacity: 0.3;
+        transition: 200ms;
+      }
+      &.active {
+        a {
+          opacity: 1;
+          letter-spacing: 1px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 370px) {
+    padding: 15px 10px;
+    .toggle-btn {
+      display: flex;
+      width: 100%;
+    }
+    ul {
+      flex-direction: column;
+      opacity: 0;
+      visibility: hidden;
+      max-height: 0;
+      transition: max-height 250ms;
       &.active {
         opacity: 1;
-        letter-spacing: 1px;
+        visibility: visible;
+        max-height: 70vh;
       }
     }
   }
