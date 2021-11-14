@@ -47,7 +47,7 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 25px 0;
+    padding: 0 25px;
     border-radius: 5px;
     cursor: pointer;
 		white-space: nowrap;
