@@ -58,24 +58,43 @@ const GlobalStyle = createGlobalStyle`
     }
 	}
 	.layout-loader {
-		width: var(--size);
-		margin: 0 auto;
 		display: flex;
-		padding: 0 25px;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		height: 100vh;
 
-		.content {
-			margin-left: 40px;
-			padding: 30px 8px;
-			flex: 1;
+		svg {
+			width: 120px;
+			height: 120px;
+			fill: rgba(255, 255, 255, 0.3);
+			animation: opacity 500ms ease-in-out forwards;
+		}
+		span {
+			display: block;
+			margin-top: 25px;
+			color: rgba(255, 255, 255, 0.3);
+			font-size: 28px;
+			font-weight: bolder;
+			animation: opacity 500ms ease-in-out forwards;
 		}
 
-		@media (max-width: 1050px) {
-			width: 100%;
-			flex-direction: column;
-			padding: 0;
-			.content {
-				margin-left: 0;
-				padding: 30px 0;
+		@keyframes opacity {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+
+		@media (max-width: 500px) {
+			svg {
+				width: 80px;
+				height: 80px;
+			}
+			span {
+				font-size: 20px;
 			}
 		}
 	}
