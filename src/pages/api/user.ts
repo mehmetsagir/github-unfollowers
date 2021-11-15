@@ -16,7 +16,9 @@ const handler = async (req, res) => {
             .findOne({ username })
             .then((user) => {
               if (user) {
-                return;
+                return res.status(204).json({
+                  message: 'registered user',
+                });
               } else {
                 db.collection('users').insertOne({ username });
               }
