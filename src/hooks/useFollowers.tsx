@@ -14,7 +14,7 @@ const useFollowers = () => {
         setFollowers((prevState) => [...prevState, ...res.data]);
       });
     }
-  }, [user]);
+  }, []);
 
   useEffect(() => {
     if (user.followers == followers.length) {
